@@ -1,0 +1,18 @@
+%use masm
+
+    global _start
+    section .text
+_start:
+    mov rax, 1 ;read
+    mov rdi, 1 ;stdin
+    mov rsi, zmienna ;adres zmiennej
+    mov rdx, 18 ;lenght
+    syscall
+
+    mov rax, 60 ; wyjdz z programu 
+    xor rdi,rdi ;zerowanie rdi
+    syscall
+section .data    
+    zmienna: db "nie lubie asemblera"
+    end
+     
