@@ -1,0 +1,34 @@
+%use masm
+
+    global main
+    extern printf
+
+    section .text
+main:
+    push rbp
+    mov rbp,rsp;inicjalizuje stos
+    sub rsp,32
+
+    mov rdi, format ;wpisuje w rejestr rdi adres stringa ktory zrobilem na dole
+    mov rsi, [zmienna1] ; wpisuje co ten string %d ma wydupcyc
+    movsd xmm0, [zmienna2] ;do zmiennych double trzeba movsd i xmm0
+    mov rax, 1;ile wrzucam liczb rzeczywistych
+    call printf
+    xor rax,rax ; to zeruje 
+    
+    
+
+    mov rsp,rbp
+    pop rbp ;zakonczenie stostu
+    ret
+
+    
+
+    section .data
+format: db "wydrukowanie prinf int %d a double to %f",10    ;10 to znak nowej lini
+zmienna1: dd 123 ;to jest to co chcemy w %d
+zmienna2: dq 54.1    
+    end
+
+
+;prosze wymienic znane rejestry procesora
